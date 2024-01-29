@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3q1Csu1O4bVRrIlcYZA3z94M2uhN+3cKZauvl/Is4pLA8CWG2OSJRblWf+Mbq8kgmMkuY4YyzUfG2d6tDzfWEQ==",
+  "dgSpecHash": "ru97pfzyMSXOHVTHFyyK/1MXlLTdMgXiHQB6o8eOibUOO6vgooFQh9pLRNdYClFwo/PAOjaKukW2O4/T6BAR7g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\carlo\\source\\repos\\UserManager\\UserManager\\UserManager.csproj",
+  "projectFilePath": "C:\\Users\\carlo\\OneDrive\\Documentos\\VueProjects\\UserManagerProject\\UserManager\\UserManager\\UserManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

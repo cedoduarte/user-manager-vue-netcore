@@ -1,15 +1,44 @@
 <template>
     <div class="card">
         <div class="card-body">
-            {{ firstName }}
+            <span>ID: {{ id }}</span>
+            <br />
+            <span>Full name: {{ firstName }} {{ lastName }}</span>            
+            <br />
+            <span>Location: {{ country }}, {{ province }}, {{ city }}</span>
+            <br />
+            <span>Zip code: {{ zipCode }}</span>
+            <br />
+            <span>Birthdate: {{ birthdate }}</span>
+            <br />
+            <span>Phone number: {{ phoneNumber }}</span>
+            <br />
+            <span>Email: {{ email }}</span>
+            <br />
+            <span>Username: <strong>{{ username }}</strong></span>
+            <br />
+            <a :href="linkedInProfileUrl" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>
+            <div class="user-card-view-buttons">
+                <button class="btn btn-warning" @click="goToEdit">Edit</button>
+                <button class="btn btn-danger" @click="openDialog">Delete</button>
+                <DialogModalComponent 
+                    v-if="dialogVisible" 
+                    @dialogAccepted="deletionAccepted" 
+                    @closeDialog="closeDialog"
+                >
+                    <h2>My popup</h2>
+                </DialogModalComponent>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { ref, defineProps } from "vue";
+import { useRouter } from "vue-router";
+import DialogModalComponent from "./DialogModalComponent.vue";
 
-defineProps({
+const props = defineProps({
     id: Number,
     firstName: String,
     lastName: String,
@@ -23,4 +52,36 @@ defineProps({
     username: String,
     linkedInProfileUrl: String
 });
+
+const router = useRouter();
+const dialogVisible = ref<boolean>(false);
+
+const openDialog = () => {
+    dialogVisible.value = true;
+}
+
+const closeDialog = () => {
+    dialogVisible.value = false;
+}
+
+const goToEdit = () => {
+    router.push(`/update/${props.id}`);
+}
+
+const deletionAccepted = () => {
+    console.log("delete now: " + props.id);
+}
 </script>
+
+<style scoped>
+.user-card-view-buttons {
+    text-align: right;
+}
+
+.user-card-view-buttons button {
+    margin: 5px;
+    width: 80px;
+    height: 40px;
+    display: inline-block;
+}
+</style>

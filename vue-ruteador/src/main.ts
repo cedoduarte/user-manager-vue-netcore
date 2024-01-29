@@ -11,7 +11,8 @@ const router = createRouter({
         { name: "home", path: "/home", component: () => import("./components/HomeComponent.vue") }, 
         { name: "users", path: "/users", component: () => import("./components/UserListViewComponent.vue") },
         { name: "contact", path: "/contact", component: () => import("./components/ContactComponent.vue") },
-        { name: "about", path: "/about", component: () => import("./components/AboutComponent.vue") }
+        { name: "about", path: "/about", component: () => import("./components/AboutComponent.vue") },
+        { name: "update", path: "/update/:userId", component: () => import("./components/UpdateUserViewComponent.vue") }
     ]
 });
 

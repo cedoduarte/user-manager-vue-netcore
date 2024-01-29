@@ -45,7 +45,7 @@ namespace UserManager.CQRS.Users.Command.Login
                 .FirstOrDefaultAsync(cancel);
             if (loggedUser is null)
             {
-                throw new Exception($"{nameof(User)} with Username {command.Username} does not exist!");
+                throw new Exception("Username or password are not correct!");
             }
             return loggedUser;
         }
@@ -64,7 +64,7 @@ namespace UserManager.CQRS.Users.Command.Login
             {
                 throw new Exception("The password cannot be empty!");
             }
-            if (Util.IsValidPassword(command.Password))
+            if (!Util.IsValidPassword(command.Password))
             {
                 throw new Exception(Shared.Constants.GetPasswordError(command.Password));
             }

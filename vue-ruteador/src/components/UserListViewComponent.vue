@@ -3,7 +3,19 @@
     <div class="user-list-view-container">
         <ul>
             <li v-for="userItem in userList" :key="userItem.id">
-                <UserCardViewComponent :firstName="userItem.firstName"/>
+                <UserCardViewComponent 
+                    :id="userItem.id"
+                    :firstName="userItem.firstName"
+                    :lastName="userItem.lastName"
+                    :country="userItem.country"
+                    :province="userItem.province"
+                    :city="userItem.city"
+                    :zipCode="userItem.zipCode"
+                    :birthdate="userItem.birthdate"
+                    :phoneNumber="userItem.phoneNumber"
+                    :email="userItem.email"
+                    :username="userItem.username"
+                    :linkedInProfileUrl="userItem.linkedInProfileUrl" />
             </li>
         </ul>
     </div>
