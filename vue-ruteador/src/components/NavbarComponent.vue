@@ -62,15 +62,14 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from "vue";
 import { RouterLink } from 'vue-router';
-import { useStore } from "vuex";
-import { key } from "../store";
+import { useSearchStore } from '../store/store';
 
 enum NavbarStyle {
     LIGHT = "light",
     DARK = "dark"
 }
 
-const store = useStore(key);
+const searchStore = useSearchStore();
 const selectedNavbarStyle = ref<NavbarStyle>(NavbarStyle.LIGHT);
 const searchText = ref<string>("");
 
@@ -89,7 +88,7 @@ const navbarChangeStyle = (newStyle: NavbarStyle) => {
 }
 
 const searchButtonClicked = () => {
-    store.state.searchText = searchText.value;
+    searchStore.setSearchText(searchText.value);
 }
 </script>
 

@@ -3,7 +3,7 @@ import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import 'vue-toastification/dist/index.css'
 import Toast from 'vue-toastification'
-import { store, key } from "./store";
+import { createPinia } from 'pinia'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -19,5 +19,5 @@ const router = createRouter({
 const app = createApp(App);
 app.use(router);
 app.use(Toast);
-app.use(store, key);
+app.use(createPinia());
 app.mount('#app');

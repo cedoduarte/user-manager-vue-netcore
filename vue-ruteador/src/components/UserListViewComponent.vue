@@ -26,15 +26,14 @@ import UserCardViewComponent from "./UserCardViewComponent.vue";
 import { USER_USER_LIST_URL } from "../shared/Constants";
 import { ref, watch, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from "vue";
 import { useToast } from "vue-toastification";
-import { useStore } from "vuex";
-import { key } from "../store";
+import { useSearchStore } from "../store/store";
 import { User } from "../models/User";
 
-const store = useStore(key);
+const searchStore = useSearchStore();
 const toast = useToast();
 const userList = ref<User[]>([]);
 
-watch(() => store.state.searchText, async (newValue: string, oldValue: string) => {
+watch(() => searchStore.searchText, async (newValue: string, oldValue: string) => {
     try {
         const response = await fetch(`${USER_USER_LIST_URL}?getAll=false&keyword=${newValue}`);
         if (!response.ok) {

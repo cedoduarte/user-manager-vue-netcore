@@ -3,7 +3,7 @@
         <div class="dialog-modal-popup-inner">
             <slot />
             <button class="btn btn-primary" @click="dialogAccepted">Yes</button>
-            <button class="btn btn-danger" @click="closeDialog">Close Popup</button>
+            <button class="btn btn-danger" @click="dialogRejected">Close Popup</button>
         </div>
     </div>
 </template>
@@ -11,10 +11,10 @@
 <script setup lang="ts">
 import { defineEmits } from 'vue';
 
-const emit = defineEmits(["closeDialog", "dialogAccepted"]);
+const emit = defineEmits(["dialogRejected", "dialogAccepted"]);
 
-const closeDialog = () => {
-    emit("closeDialog");
+const dialogRejected = () => {
+    emit("dialogRejected");
 }
 
 const dialogAccepted = () => {

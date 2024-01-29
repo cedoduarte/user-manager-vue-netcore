@@ -24,7 +24,7 @@
                 <DialogModalComponent 
                     v-if="dialogVisible" 
                     @dialogAccepted="deletionAccepted" 
-                    @closeDialog="closeDialog"
+                    @dialogRejected="deletionRejected"
                 >
                     <h2>My popup</h2>
                 </DialogModalComponent>
@@ -56,20 +56,20 @@ const props = defineProps({
 const router = useRouter();
 const dialogVisible = ref<boolean>(false);
 
-const openDialog = () => {
-    dialogVisible.value = true;
-}
-
-const closeDialog = () => {
-    dialogVisible.value = false;
-}
-
 const goToEdit = () => {
     router.push(`/update/${props.id}`);
 }
 
+const openDialog = () => {
+    dialogVisible.value = true;
+}
+
 const deletionAccepted = () => {
     console.log("delete now: " + props.id);
+}
+
+const deletionRejected = () => {
+    dialogVisible.value = false;
 }
 </script>
 
