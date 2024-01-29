@@ -33,9 +33,9 @@ const searchStore = useSearchStore();
 const toast = useToast();
 const userList = ref<User[]>([]);
 
-watch(() => searchStore.searchText, async (newValue: string, oldValue: string) => {
+const fetchUsers = async (keyword: string) => {
     try {
-        const response = await fetch(`${USER_USER_LIST_URL}?getAll=false&keyword=${newValue}`);
+        const response = await fetch(`${USER_USER_LIST_URL}?getAll=false&keyword=${keyword}`);
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -44,6 +44,10 @@ watch(() => searchStore.searchText, async (newValue: string, oldValue: string) =
     } catch (error: any) {
         toast.error(`Error searching user: ${error.message}`);
     }
+}
+
+watch(() => searchStore.searchText, async (newValue: string, oldValue: string) => {
+    fetchUsers(newValue);    
 });
 
 console.log("created");

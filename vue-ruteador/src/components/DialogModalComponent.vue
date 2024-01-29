@@ -2,8 +2,8 @@
     <div class="dialog-modal-popup">
         <div class="dialog-modal-popup-inner">
             <slot />
-            <button class="btn btn-primary" @click="dialogAccepted">Yes</button>
-            <button class="btn btn-danger" @click="dialogRejected">Close Popup</button>
+            <button class="dialog-modal-button btn btn-primary" @click="dialogAccepted">Yes</button>
+            <button class="dialog-modal-button btn btn-danger" @click="dialogRejected">No</button>
         </div>
     </div>
 </template>
@@ -39,5 +39,9 @@ const dialogAccepted = () => {
 .dialog-modal-popup-inner {
     background: #fff;
     padding: 32px;
+}
+
+.dialog-modal-button {
+    margin: 2px;
 }
 </style>

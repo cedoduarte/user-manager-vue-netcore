@@ -26,7 +26,8 @@
                     @dialogAccepted="deletionAccepted" 
                     @dialogRejected="deletionRejected"
                 >
-                    <h2>My popup</h2>
+                    <h1>User deletion</h1>
+                    <p>Do you want to delete the user <strong>{{ username }}</strong> with email: <strong>{{ email }}?</strong></p>
                 </DialogModalComponent>
             </div>
         </div>
@@ -37,6 +38,8 @@
 import { ref, defineProps } from "vue";
 import { useRouter } from "vue-router";
 import DialogModalComponent from "./DialogModalComponent.vue";
+import { USER_DELETE_URL } from "../shared/Constants";
+import { useToast } from "vue-toastification";
 
 const props = defineProps({
     id: Number,
@@ -53,6 +56,7 @@ const props = defineProps({
     linkedInProfileUrl: String
 });
 
+const toast = useToast();
 const router = useRouter();
 const dialogVisible = ref<boolean>(false);
 
@@ -64,8 +68,27 @@ const openDialog = () => {
     dialogVisible.value = true;
 }
 
-const deletionAccepted = () => {
-    console.log("delete now: " + props.id);
+const fetchDeletionUser = async (userId: number | undefined) => {
+    try {
+        const response = await fetch(`${USER_DELETE_URL}/${userId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        if (response.ok) {
+            dialogVisible.value = false;
+            toast.info("User deleted successfully!");
+        } else {
+            toast.error(`Error: ${response.statusText}`);
+        }
+    } catch (error: any) {
+        toast.error(`Error: ${error.message}`);
+    }    
+}
+
+const deletionAccepted = async () => {
+    fetchDeletionUser(props.id);   
 }
 
 const deletionRejected = () => {
